@@ -7,9 +7,17 @@ public class DifficultyLevel : ScriptableObject
     [Tooltip("Which obstacles will this difficulty spawn?")]
     [EnumFlags] public ObstacleType obstacles;
 
+    // Range of gap sizes between pipes (x is min, y is max)
+    [Tooltip("Range of horizontal distance between pipes (x is min, y is max)")]
+    public Vector2 pipeGapSizeRange;
+
     // Range of horizontal distance between pipes (x is min, y is max)
     [Tooltip("Range of horizontal distance between pipes (x is min, y is max)")]
-    public Vector2 pipeDistanceRange;
+    public Vector2 pipeDistanceRangeHorizontal;
+
+    // Range of vertical distance between pipes (x is min, y is max)
+    [Tooltip("Range of vertical distance between pipes (x is min, y is max)")]
+    public Vector2 pipeDistanceRangeVertical;
 
     // Range of how many obstacles will be found between two pipe pairs (x is min, y is max)
     [Tooltip("Range of how many obstacles will be found between two pipe pairs (x is min, y is max)")]
