@@ -3,24 +3,24 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Difficulty", menuName = "ScriptableObjects/Difficulty", order = 1)]
 public class DifficultyLevel : ScriptableObject
 {
-    // Which obstacles will this difficulty spawn?
-    [Tooltip("Which obstacles will this difficulty spawn?")]
+    // Which obstacles will this difficulty spawn? (You may choose multiple options)
+    [Tooltip("Which obstacles will this difficulty spawn? (You may choose multiple options)")]
     [EnumFlags] public ObstacleType obstacles;
 
-    // Range of gap sizes between pipes (x is min, y is max)
-    [Tooltip("Range of horizontal distance between pipes (x is min, y is max)")]
+    // Range of gap sizes between pipes (X is min, Y is max)
+    [Tooltip("Range of horizontal distance between pipes (X is min, Y is max)")]
     public Vector2 pipeGapSizeRange;
 
-    // Range of horizontal distance between pipes (x is min, y is max)
-    [Tooltip("Range of horizontal distance between pipes (x is min, y is max)")]
+    // Range of horizontal distance between pipes (X is min, Y is max)
+    [Tooltip("Range of horizontal distance between pipes (X is min, Y is max)")]
     public Vector2 pipeDistanceRangeHorizontal;
 
-    // Range of vertical distance between pipes (x is min, y is max)
-    [Tooltip("Range of vertical distance between pipes (x is min, y is max)")]
+    // Range of vertical distance between pipes (X is min, Y is max)
+    [Tooltip("Range of vertical distance between pipes (X is min, Y is max)")]
     public Vector2 pipeDistanceRangeVertical;
 
-    // Range of how many obstacles will be found between two pipe pairs (x is min, y is max)
-    [Tooltip("Range of how many obstacles will be found between two pipe pairs (x is min, y is max)")]
+    // Range of how many obstacles will be found between two pipe pairs (X is min, Y is max)
+    [Tooltip("Range of how many obstacles will be found between two pipe pairs (X is min, Y is max)")]
     public Vector2Int extraObstacleDensityRange;
 
     // What is the velocity at each point in time?

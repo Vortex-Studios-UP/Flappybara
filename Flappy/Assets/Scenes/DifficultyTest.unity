@@ -573,6 +573,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1984823635}
   - component: {fileID: 1984823633}
+  - component: {fileID: 1984823636}
+  - component: {fileID: 1984823634}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -595,9 +597,20 @@ MonoBehaviour:
   ItemPrefab: {fileID: 2122946535036528162, guid: 6a0fb19564cf8874aa5ecc35c1fd5982, type: 3}
   MovementSpeed: 30
   GenerationFrequency: 2
-  MaxGapSize: 150
-  GapDifficultyDecrease: 5
-  DifficultyStep: 10
+  gapBetweenObstacles: 0
+  distanceFromLastObstacleY: 0
+--- !u!114 &1984823634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984823632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4813577620918f446a4a1b817ea5c891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1984823635
 Transform:
   m_ObjectHideFlags: 0
@@ -614,3 +627,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1984823636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984823632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaba94a9293df674a85d6bcf76c018b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyRoutine:
+    difficultyRoutine:
+    - time: 0
+      difficulty: {fileID: 11400000, guid: 09d4b4f9717982747849abe9231a7bc2, type: 2}
+    - time: 20
+      difficulty: {fileID: 11400000, guid: 657f533bc0da3964d939f5df28011150, type: 2}
+    - time: 60
+      difficulty: {fileID: 11400000, guid: bc4e926772c205d4e9ab92f19a86cc8a, type: 2}
+  spawner: {fileID: 1984823633}
