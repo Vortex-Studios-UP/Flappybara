@@ -226,6 +226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1043217023}
   - component: {fileID: 1043217022}
+  - component: {fileID: 1043217024}
+  - component: {fileID: 1043217025}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -298,6 +300,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1043217024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043217021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212a6b7dda4b5c4a8c095f754f25650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefab: {fileID: 9054932255870822629, guid: f5b16534ed18a484287ab9b0ed60c62e, type: 3}
+  MovementSpeed: 35
+  GenerationFrequency: 1.7
+  SpawnXPosition: 150
+  SpawnYPositionMax: 95
+  SpawnYPositionMin: -95
+--- !u!114 &1043217025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043217021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212a6b7dda4b5c4a8c095f754f25650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefab: {fileID: 9054932255870822629, guid: f5b16534ed18a484287ab9b0ed60c62e, type: 3}
+  MovementSpeed: 35
+  GenerationFrequency: 2.7
+  SpawnXPosition: 150
+  SpawnYPositionMax: 95
+  SpawnYPositionMin: -95
 --- !u!1001 &1110567268
 PrefabInstance:
   m_ObjectHideFlags: 0
