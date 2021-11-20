@@ -8,20 +8,22 @@ public class RandomSpawner : MonoBehaviour
     // GameObject to spawn as an obstacle
     public GameObject ItemPrefab;
     // Speed in which the spawned obstacles will move to the left
-    public float MovementSpeed = 30f;
+    [HideInInspector] public float MovementSpeed = 30f;
     // Time between each spawn in seconds
-    public float GenerationFrequency = 2f;
+    [HideInInspector] public float GenerationFrequency = 2f;
+    /*
     // Maximum gap size (when Difficulty is VeryEasy)
     public float MaxGapSize = 130f;
     // Amount by which the gap size decreases with each Difficulty level
     public float GapDifficultyDecrease = 3f;
     // Amount of spawned pipes that increase Difficulty level
     public int DifficultyStep = 10;
+    */
 
     // Horizontal position to spawn obstacles in
     private const float SPAWN_X_POSITION = 100;
     // Horizontal position to spawn obstacles in
-    private const float DESTROY_X_POSITION = -SPAWN_X_POSITION;
+    private const float DESTROY_X_POSITION = -2*SPAWN_X_POSITION;
     // Minimum vertical position to spawn obstacles in
     public const float MINIMUM_Y_POSITION = -95;
 
@@ -33,7 +35,13 @@ public class RandomSpawner : MonoBehaviour
     private int obstaclesSpawned = 0;
     // Internal value for vertical distance between the two spawned obstacles
     // SetDifficulty() modifies this value according to 'maxGapSize', 'minGapSize' and 'obstaclesSpawned'
-    private float gapBetweenObstacles;
+    [HideInInspector] public float gapBetweenObstacles;
+
+    // Value which manages how far apart will an obstacle be vertically with respect to the last, it's itself managed by difficulty
+    [HideInInspector] public float distanceFromLastObstacleY;
+
+    // Internal boolean which stores whether or not is this the first obstacle
+    private bool isSpawningFirstObstacle = true;
 
     // Difficulty classes definitions
     public enum Difficulty { VeryEasy, Easy, Medium, Hard, VeryHard };
@@ -44,7 +52,7 @@ public class RandomSpawner : MonoBehaviour
         ObstacleList = new List<GameObject>();
 
         // Set Difficulty to VeryEasy
-        SetDifficulty(Difficulty.VeryEasy);
+        //SetDifficulty(Difficulty.VeryEasy);
     }
 
     void Update()
@@ -79,10 +87,28 @@ public class RandomSpawner : MonoBehaviour
     // Function that spawns obstacles and adds them to 'ObstacleList'.
     void SpawnObstacle(float SPAWN_X_POSITION, float gapBetweenObstacles)
     {
+        // Gets the last Y position spawned in order to spawn the next one close by or far away depending on difficulty
+        float lastBottomY = isSpawningFirstObstacle ? -(gapBetweenObstacles/2) : ObstacleList[ObstacleList.Count - 2].transform.position.y;
+        
+        float nextY = distanceFromLastObstacleY; // The last position will be added to this difference
+        bool inFromTop, inFromBottom; // Will this difference fit if moved up/down given the last position?
+        inFromTop = distanceFromLastObstacleY + lastBottomY <= -MINIMUM_Y_POSITION - gapBetweenObstacles; // If moved up will it fit?
+        inFromBottom = -distanceFromLastObstacleY + lastBottomY >= MINIMUM_Y_POSITION; // If moved down will it fit?
+        if (inFromTop && inFromBottom)
+            nextY *= Mathf.Sign(Random.Range(-1.0f, 1.0f)); // If it will fit in both directions, go to any
+        else if(inFromTop)
+            nextY *= 1; // If it will only fit if moving up, move up
+        else if(inFromBottom)
+            nextY *= -1; // If it will only fit if moving down, move down
+        else
+            nextY *= Mathf.Sign(Random.Range(-1.0f, 1.0f)); // If it won't fit either way, then choose randomly and have it clamped down
+
+        nextY = Mathf.Clamp(nextY + lastBottomY, MINIMUM_Y_POSITION, -MINIMUM_Y_POSITION - gapBetweenObstacles);
+
         // Two vertically-random vectors are generated with a space between them dictvated by 'gapBetweenObstacles'.
         Vector2 bottomVector, topVector;
         bottomVector.x = SPAWN_X_POSITION;
-        bottomVector.y = Random.Range(MINIMUM_Y_POSITION, -MINIMUM_Y_POSITION - gapBetweenObstacles);
+        bottomVector.y = nextY;
         topVector.x = SPAWN_X_POSITION;
         topVector.y = bottomVector.y + gapBetweenObstacles;
 
@@ -98,9 +124,11 @@ public class RandomSpawner : MonoBehaviour
         obstaclesSpawned++;
 
         // New difficulty is set.
-        SetDifficulty(GetDifficulty());
-    }
+        //SetDifficulty(GetDifficulty());
 
+        isSpawningFirstObstacle = false;
+    }
+    /*
     // Function that increased Difficulty each time 10 new obstacles have been spawned.
     Difficulty GetDifficulty()
     {
@@ -133,4 +161,5 @@ public class RandomSpawner : MonoBehaviour
                 break;
         }
     }
+    */
 }
