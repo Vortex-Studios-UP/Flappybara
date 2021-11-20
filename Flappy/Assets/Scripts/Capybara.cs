@@ -17,7 +17,7 @@ public class Capybara : MonoBehaviour
     private Rigidbody2D capybaraRigidbody2D;
 
     // The player's collider
-    private Collider2D capibaraCollider;
+    private CircleCollider2D capibaraCollider;
 
     // An array of collisions of fixed length to avoid GC
     private Collider2D[] cachedCollisions = new Collider2D[8];
@@ -25,7 +25,7 @@ public class Capybara : MonoBehaviour
     private void Awake()
     {
         capybaraRigidbody2D = GetComponent<Rigidbody2D>();
-        capibaraCollider = GetComponent<Collider2D>();
+        capibaraCollider = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class Capybara : MonoBehaviour
     private void FixedUpdate()
     {
         // COLLISIONS
-        int collisionCount = capibaraCollider.OverlapCollider(collisionsFilter, cachedCollisions);
+        int collisionCount = Physics2D.OverlapCircleNonAlloc(capibaraCollider.transform.position + (Vector3)capibaraCollider.offset, capibaraCollider.radius, cachedCollisions);
         for(int i = 0; i < collisionCount; i++)
             DealWithCollision(cachedCollisions[i]);
 
@@ -49,6 +49,6 @@ public class Capybara : MonoBehaviour
     // Function triggered on collision (death state)
     private void DealWithCollision(Collider2D other)
     {
-        Debug.Log("Dead");
+        //Debug.Log("Dead");
     }
 }
