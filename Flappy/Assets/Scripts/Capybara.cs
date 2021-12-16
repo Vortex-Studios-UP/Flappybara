@@ -10,11 +10,22 @@ public class Capybara : MonoBehaviour
      // Height of jump
     public float JUMP_AMOUNT = 100f;
 
+    // Mask of what can the capybara collide with
+    public ContactFilter2D collisionsFilter;
+
     // Provide access to physics though the 'rigidbody2D' object
     private Rigidbody2D capybaraRigidbody2D;
+
+    // The player's collider
+    private CircleCollider2D capibaraCollider;
+
+    // An array of collisions of fixed length to avoid GC
+    private Collider2D[] cachedCollisions = new Collider2D[8];
+
     private void Awake()
     {
         capybaraRigidbody2D = GetComponent<Rigidbody2D>();
+        capibaraCollider = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -26,9 +37,18 @@ public class Capybara : MonoBehaviour
             capybaraRigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
     }
 
-    // Function triggered on collision (death state)
-    void OnCollisionEnter2D(Collision2D other)
+    private void FixedUpdate()
     {
-        Debug.Log("Dead");
+        // COLLISIONS
+        int collisionCount = Physics2D.OverlapCircleNonAlloc(capibaraCollider.transform.position + (Vector3)capibaraCollider.offset, capibaraCollider.radius, cachedCollisions);
+        for(int i = 0; i < collisionCount; i++)
+            DealWithCollision(cachedCollisions[i]);
+
+    }
+
+    // Function triggered on collision (death state)
+    private void DealWithCollision(Collider2D other)
+    {
+        //Debug.Log("Dead");
     }
 }
