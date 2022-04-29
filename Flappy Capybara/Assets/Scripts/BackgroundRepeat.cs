@@ -1,7 +1,7 @@
 using UnityEngine;
 
-// POINTERS
-// * This script repositions a background element to the right whenever it leaves the screen.
+// NOTES
+// * FUNCION: This script repositions a background element to the right whenever it leaves the screen.
 // * It requires (1) a BoxCollider2D and (2) constant horizontal scrolling.
 
 public class BackgroundRepeat : MonoBehaviour
@@ -11,7 +11,7 @@ public class BackgroundRepeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Obstains the sprite width from BoxCollider2D
+        // Obtains the sprite width from BoxCollider2D
         BoxCollider2D groundCollider = GetComponent<BoxCollider2D>();
         spriteWidth = groundCollider.size.x;
     }

@@ -1,7 +1,8 @@
 using UnityEngine;
 
-// POINTERS
-// * This script handles player movement, animation and collision.
+// NOTES
+// * FUNCION: This script handles player movement, animation and collision.
+// * REQUISITES: None.
 // * Physics are used to implement character movement.
 // * [SerializeField] makes a private variable accesible on the Inspector.
 // * Rigidbody2D is a component that allows a GameObject to interact with 2D physics.

@@ -1,10 +1,11 @@
 using UnityEngine;
 
-// POINTERS
-// * This script moves objects horizontally along the screen.
+// NOTES
+// * FUNCION: This script moves objects horizontally along the screen.
 // * It can be used for both background elements and game obstacles.
+// * IPooledObject forces the script to use OnPbjectSpawn();
 
-public class Scroll : MonoBehaviour
+public class Scroll : MonoBehaviour, IPooledObject
 {
     // 'Speed' indicates how fast the object will scroll to the left.
     // Negative numbers will result in scrolling to the right.
@@ -14,12 +15,12 @@ public class Scroll : MonoBehaviour
     private Rigidbody2D rb;
 
     // Start is called before the first frame update.
-    void Start()
+    public void OnObjectSpawn()
     {
         rb = GetComponent<Rigidbody2D>();
 
         // The physics object's speed is set.
-        rb.velocity = Vector2.left * speed;
+        rb.velocity = new Vector2(-speed, 0f);
     }
 
     // Update is called once per frame.
