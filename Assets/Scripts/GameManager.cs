@@ -1,10 +1,13 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Allows scene manipulation (for Game Over)
-using TMPro; //
+// Library for scene manipulation (for Game Over).
+using UnityEngine.SceneManagement;
+// Library for text and button manipulation.
+using TMPro; 
 
-// POINTERS
-// * Singleton: A class that is (1) easily accesible from other scripts and (2) can only be instanced once at a time.
+// FUNCTION: This script handles score and fail states.
+// NOTES:
 // * This script uses singleton logic.
+// * Singleton: A class that is (1) easily accesible from other scripts and (2) can only be instanced once at a time.
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +17,16 @@ public class GameManager : MonoBehaviour
     // Inspector field for the Score Text.
     [SerializeField] private TMP_Text scoreText;
 
+    // Bool for fail state.
+    public bool isGameOver;
+
+    // Score counter.
+    private int score;
+
+
     // Creates a singleton GameManager instance and its getter.
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
-
-    public bool isGameOver;
-    private int score;
 
 
     // Awake is called before Start (the first frame update).

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-// POINTERS
-// * This script handles player movement, animation and collision.
+// FUNCTION: This script handles player movement, animation and collision.
+// NOTES:
 // * Physics are used to implement character movement.
 // * [SerializeField] makes a private variable accesible on the Inspector.
 // * Rigidbody2D is a component that allows a GameObject to interact with 2D physics.
@@ -9,11 +9,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float upForce; // The force of each jump.
+    // The force of each jump.
+    [SerializeField] private float upForce;
 
-    private bool isDead; // If true, indicates player has died.
-    private Rigidbody2D playerRb; // Instances for 2D physics.
-    private Animator playerAnimator; // Instance for animation.
+    // If true, indicates player has died.
+    private bool isDead;
+
+    // Instance for 2D physics.
+    private Rigidbody2D playerRb;
+
+    // Instance for animation.
+    private Animator playerAnimator; 
 
     // Start is called before the first frame update.
     void Start()
@@ -46,7 +52,7 @@ public class Player : MonoBehaviour
         isDead = true;
         playerAnimator.SetTrigger("Die");
 
-        // Calls the Game Over logic from the Game Manager (text box)
+        // Calls the Game Over logic from the Game Manager (text box).
         GameManager.Instance.GameOver();
     }
 }

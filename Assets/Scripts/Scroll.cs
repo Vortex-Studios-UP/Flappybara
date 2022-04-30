@@ -1,16 +1,16 @@
 using UnityEngine;
 
-// POINTERS
-// * This script moves objects horizontally along the screen.
-// * It can be used for both background elements and game obstacles.
+// FUNCTION: This script moves objects horizontally along the screen.
+// NOTES:
+// * This can be used for both background elements and game obstacles.
 
 public class Scroll : MonoBehaviour
 {
-    // 'Speed' indicates how fast the object will scroll to the left.
+    // Variable that indicates how fast the object will scroll to the left.
     // Negative numbers will result in scrolling to the right.
     [SerializeField] private float speed = 2.5f;
 
-    // Internal instance of the obect's physics component.
+    // Instance of the obect's physics component.
     private Rigidbody2D rb;
 
     // Start is called before the first frame update.

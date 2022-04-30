@@ -1,7 +1,6 @@
 using UnityEngine;
 
-// POINTERS
-// * This component increases the score when the object is collided with.
+// FUNCTION: This script increases the score when the object is collided with.
 
 public class Score : MonoBehaviour
 {
